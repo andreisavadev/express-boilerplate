@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { JsonWebTokenError } from 'jsonwebtoken';
 import { sendResponse } from '@/utils/response-handler';
 import { logger } from '@/utils/winston';
+import appConfig from '@/config/app.config';
 
 export const errorHandler = (
   error: any,
@@ -27,7 +28,7 @@ export const errorHandler = (
   // Handle known Prisma errors
   if (error instanceof Prisma.PrismaClientKnownRequestError) {
     const res =
-      process.env.NODE_ENV == 'development'
+      appConfig.apiEnv == 'development'
         ? { error: 'Prisma Error occured', details: error }
         : { error: 'Error occured' };
 
@@ -37,7 +38,7 @@ export const errorHandler = (
   // Handle Json Web Token error
   if (error instanceof JsonWebTokenError) {
     const res =
-      process.env.NODE_ENV == 'development'
+      appConfig.apiEnv == 'development'
         ? { error: 'Json Web Token Error occured', message: error }
         : { error: 'Error occured' };
     return sendResponse.badRequest(response, res);
@@ -45,7 +46,7 @@ export const errorHandler = (
 
   // Handle other types of errors
   const res =
-    process.env.NODE_ENV == 'development'
+    appConfig.apiEnv == 'development'
       ? { message: error.message }
       : { message: 'Internal Server Error' };
   return sendResponse.error(response, res);

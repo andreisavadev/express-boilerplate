@@ -1,5 +1,5 @@
 import bodyParser from 'body-parser';
-import express, { NextFunction, Response } from 'express';
+import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import xss from 'x-xss-protection';
@@ -8,6 +8,7 @@ import rateLimit from 'express-rate-limit';
 import v1Routes from './routes/v1';
 import { notFoundHandler } from './middleware/not-found';
 import { errorHandler } from './middleware/error-handler';
+import { db } from './utils/db.server';
 
 const app = express();
 
@@ -30,10 +31,20 @@ const limiter = rateLimit({
 
 app.use(limiter);
 
+// V1 Routes
 app.use('/api/v1', v1Routes);
 
+// Not found routes middleware
 app.use(notFoundHandler as any);
 
+// Error handler middleware
 app.use(errorHandler as any);
 
+// Disconnect database on shutdown
+process.on('SIGINT', async () => {
+  await db.$disconnect();
+  process.exit(0);
+});
+
 export default app;
+

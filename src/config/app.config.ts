@@ -5,6 +5,7 @@ config();
 const appConfig = {
   apiVersion: '1.0.0',
   apiName: 'Express Boilerplate API',
+  apiEnv: process.env.NODE_ENV,
   port: process.env.PORT || 3000,
   jwt: {
     secret: process.env.JWT_SECRET_KEY!,

@@ -9,7 +9,7 @@ export const notFoundHandler = (
   const notFoundMessage = {
     Requested_URL: req.originalUrl,
     success: false,
-    erro: 'Error 404 - Not Found',
+    error: 'Error 404 - Not Found',
   };
   return sendResponse.notFound(res, notFoundMessage);
 };
