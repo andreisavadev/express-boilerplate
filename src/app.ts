@@ -6,9 +6,6 @@ import xss from 'x-xss-protection';
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import v1Routes from './routes/v1';
-import HttpStatusCode from './utils/HttpStatusCode';
-import prisma from '@/services/prisma.service';
-import { ApiResponseBody } from '@/utils/responseHandler';
 
 const app = express();
 

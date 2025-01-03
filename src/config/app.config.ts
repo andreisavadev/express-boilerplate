@@ -8,7 +8,7 @@ const appConfig = {
   port: process.env.PORT || 3000,
   jwt: {
     secret: process.env.JWT_SECRET_KEY!,
-    refreshSecretKey: process.env.REFRESH_SECRET_KEY!,
+    refreshSecretKey: process.env.JWT_REFRESH_SECRET_KEY!,
     expiresIn: '15d',
   },
   logRootPath: '.logs',
