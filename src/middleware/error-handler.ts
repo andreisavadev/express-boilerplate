@@ -2,7 +2,8 @@ import { Prisma } from '@prisma/client';
 import { Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
 import { JsonWebTokenError } from 'jsonwebtoken';
-import { sendResponse } from '@/utils/responseHandler';
+import { sendResponse } from '@/utils/response-handler';
+import { logger } from '@/utils/winston';
 
 export const errorHandler = (
   error: any,
@@ -15,6 +16,8 @@ export const errorHandler = (
   REPLACE WITH WINSTON
   console.error(error.stack)
   */
+  logger.error(error);
+
   // Handle Zod validation errors
   if (error instanceof z.ZodError) {
     const errors = error.errors.map((e: any) => e.message) as string[];

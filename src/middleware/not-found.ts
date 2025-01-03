@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { sendResponse } from '@/utils/responseHandler';
+import { sendResponse } from '@/utils/response-handler';
 
 export const notFoundHandler = (
   req: Request,
