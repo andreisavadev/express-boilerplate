@@ -1,0 +1,30 @@
+{
+  "ts-node": {
+    "files": true
+  },
+  "compilerOptions": {
+    "target": "es6",
+    "module": "CommonJS",
+    "sourceMap": false,
+    "strict": false,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "typeRoots": ["/node_modules/@types"]
+  },
+  "types": ["src/index.d.ts"],
+  "include": ["src/**/**/*"],
+  "exclude": ["node_modules", "public"]
+}
