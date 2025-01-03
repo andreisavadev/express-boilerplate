@@ -6,6 +6,8 @@ import xss from 'x-xss-protection';
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import v1Routes from './routes/v1';
+import { notFoundHandler } from './middleware/not-found';
+import { errorHandler } from './middleware/error-handler';
 
 const app = express();
 
@@ -29,5 +31,9 @@ const limiter = rateLimit({
 app.use(limiter);
 
 app.use('/api/v1', v1Routes);
+
+app.use(notFoundHandler as any);
+
+app.use(errorHandler as any);
 
 export default app;
