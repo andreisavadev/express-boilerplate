@@ -5,6 +5,8 @@ import helmet from 'helmet';
 import xss from 'x-xss-protection';
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
+import winston from 'winston';
+import expressWinston from 'express-winston';
 import v1Routes from './routes/v1';
 import { notFoundHandler } from './middleware/not-found';
 import { errorHandler } from './middleware/error-handler';
@@ -30,6 +32,20 @@ const limiter = rateLimit({
 });
 
 app.use(limiter);
+
+app.use(
+  expressWinston.logger({
+    transports: [new winston.transports.Console()],
+    format: winston.format.combine(
+      winston.format.colorize(),
+      winston.format.json()
+    ),
+    meta: false,
+    msg: 'HTTP {{req.method}} {{req.url}}',
+    colorize: true,
+  })
+);
+
 
 // V1 Routes
 app.use('/api/v1', v1Routes);
