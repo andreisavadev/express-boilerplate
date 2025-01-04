@@ -18,7 +18,7 @@ router.post(
 router.post('/logout', protectAuth as any, AuthController.logout as any);
 
 // Access: private
-// Params.body: {email: string, firstName: string, lastName: string, password: stirng, role: string}
+// Params.body: {email: string, firstName: string, lastName: string, password: string, confirmPassword: string, role?: string}
 router.post('/register', AuthController.validateRegisterData,  AuthController.register as any);
 
 router.post('/create', AuthController.validateRegisterData, AuthController.create as any);

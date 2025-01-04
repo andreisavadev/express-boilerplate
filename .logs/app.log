@@ -1,0 +1,38 @@
+{
+  name: 'PrismaClientValidationError',
+  clientVersion: '6.1.0',
+  level: 'error',
+  timestamp: '2025-01-04T18:16:37.127Z'
+}
+{
+  issues: [
+    {
+      code: 'invalid_type',
+      expected: 'string',
+      received: 'undefined',
+      path: [ 'confirmPassword' ],
+      message: 'Required'
+    }
+  ],
+  addIssue: [Function (anonymous)],
+  addIssues: [Function (anonymous)],
+  name: 'ZodError',
+  level: 'error',
+  timestamp: '2025-01-04T18:20:02.097Z'
+}
+{
+  issues: [
+    {
+      code: 'invalid_type',
+      expected: 'string',
+      received: 'undefined',
+      path: [ 'confirmPassword' ],
+      message: 'Required'
+    }
+  ],
+  addIssue: [Function (anonymous)],
+  addIssues: [Function (anonymous)],
+  name: 'ZodError',
+  level: 'error',
+  timestamp: '2025-01-04T18:25:58.071Z'
+}

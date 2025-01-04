@@ -19,7 +19,12 @@ export const create = async (
 ) => {
   try {
     const userRequest: TUserRegisterSchema = request.body;
-    const user = await UserService.createUser(userRequest);
+    const user = await UserService.createUser({
+      email: userRequest.email,
+      firstName: userRequest.firstName,
+      lastName: userRequest.lastName,
+      password: userRequest.password,
+    });
 
     return sendResponse.success(response, user);
   } catch (error) {
@@ -36,7 +41,12 @@ export const register = async (
 ) => {
   try {
     const userRequest: TUserRegisterSchema = request.body;
-    const user = await UserService.createUser(userRequest);
+    const user = await UserService.createUser({
+      email: userRequest.email,
+      firstName: userRequest.firstName,
+      lastName: userRequest.lastName,
+      password: userRequest.password,
+    });
 
     const token = generateToken({ id: user.id });
 
