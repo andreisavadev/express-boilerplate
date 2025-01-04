@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { User } from '@prisma/client';
 
 // User Base Schema
 const userBaseSchema = {
@@ -51,3 +52,5 @@ export const userUpdateSchema = z.object({
 export type TUserLoginSchema = z.infer<typeof userLoginSchema>;
 export type TUserRegisterSchema = z.infer<typeof userRegisterSchema>;
 export type TUserUpdateSchema = z.infer<typeof userUpdateSchema>;
+export type TUser = Omit<User, 'password' | 'createdAt' | 'updatedAt'>;
+export type TUserWithPassword = Omit<User, 'createdAt' | 'updatedAt'>;

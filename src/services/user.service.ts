@@ -1,10 +1,9 @@
-import { TUserUpdateSchema } from '@/types/user';
+import { TUser, TUserUpdateSchema, TUserWithPassword } from '@/types/user';
 import { db } from '@/utils/db.server';
-import { User } from '@prisma/client';
 
 export const getUserByEmail = async (
   email: string
-): Promise<Omit<User, 'createdAt' | 'updatedAt'>> => {
+): Promise<TUserWithPassword | null> => {
   return db.user.findUnique({
     where: { email },
     select: {
@@ -18,9 +17,7 @@ export const getUserByEmail = async (
   });
 };
 
-export const getUserByID = async (
-  id: string
-): Promise<Omit<User, 'password' | 'createdAt' | 'updatedAt'>> => {
+export const getUserByID = async (id: string): Promise<TUser | null> => {
   return db.user.findUnique({
     where: { id },
     select: {
@@ -33,7 +30,10 @@ export const getUserByID = async (
   });
 };
 
-export const updateUserByID = async (id: string, data: TUserUpdateSchema) => {
+export const updateUserByID = async (
+  id: string,
+  data: TUserUpdateSchema
+): Promise<TUser | null> => {
   return db.user.update({
     where: { id },
     data,
