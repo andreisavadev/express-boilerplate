@@ -16,7 +16,10 @@ const userBaseSchema = {
 export const userRegisterSchema = z
   .object({
     ...userBaseSchema,
-    firstName: z.string().min(1, { message: 'you must provide a first name' }),
+    firstName: z
+      .string()
+      .min(1, { message: 'you must provide a first name' })
+      .max(50, { message: 'First name is too long' }),
     lastName: z.string().min(1, { message: 'you must provide a last name' }),
     password: z
       .string()
